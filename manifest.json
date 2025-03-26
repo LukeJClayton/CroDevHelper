@@ -1,0 +1,14 @@
+{
+  "name": "CRO Dev Helper",
+  "description": "Allows for watching files to execute code in browser",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "context-popup.html",
+    "default_icon": "CRODH.png"
+  },
+  "permissions": [ "storage", "activeTab", "scripting", "contextMenus", "webNavigation"],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
