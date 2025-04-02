@@ -90,12 +90,13 @@ const executeCSS = async (bestCode, tabId, callback) => {
         const tab = await chrome.tabs.get(tabId);
         url = tab.url;
 
-        chrome.scripting.insertCSS({
-            target: { tabId: tabId },
-            css: bestCode
-        })
 
         setTimeout(() => {
+            chrome.scripting.insertCSS({
+                target: { tabId: tabId },
+                css: bestCode
+            })
+
             currentCSS = bestCode;
         }, 1)
     } catch (e) {
@@ -140,11 +141,12 @@ chrome.webNavigation.onCommitted.addListener((details) => {
 
                 if (currentCSS && currentCSS != '') {
                     setTimeout(() => {
+                        console.log('cssInjected')
                         chrome.scripting.insertCSS({
                             target: { tabId: basic.target.tabId },
                             css: currentCSS
                         })
-                    }, 1)
+                    }, 1000)
                 }
             }), 100)
 
